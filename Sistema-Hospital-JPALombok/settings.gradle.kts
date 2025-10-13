@@ -1,0 +1,1 @@
+rootProject.name = "Sistema-Hospital-JPALombok"
