@@ -81,3 +81,42 @@ El archivo `persistence.xml` define la unidad de persistencia:
         <property name="hibernate.format_sql" value="true"/>
     </properties>
 </persistence-unit>
+
+```
+
+
+
+
+
+
+Ejemplo de uso básico
+Creación y persistencia de entidades
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("hospital-persistence-unit");
+EntityManager em = emf.createEntityManager();
+
+em.getTransaction().begin();
+
+// Crear un médico
+Medico medico = new Medico();
+medico.setNombre("Dr. Juan Pérez");
+medico.setEspecialidad(EspecialidadMedica.CARDIOLOGIA);
+medico.setMatricula(new Matricula("M-1234", LocalDate.of(2020, 5, 1)));
+
+// Crear un paciente
+Paciente paciente = new Paciente();
+paciente.setNombre("Ana Gómez");
+
+// Crear una cita
+Cita cita = new Cita();
+cita.setMedico(medico);
+cita.setPaciente(paciente);
+cita.setFecha(LocalDateTime.now());
+cita.setEstado(EstadoCita.PENDIENTE);
+
+em.persist(medico);
+em.persist(paciente);
+em.persist(cita);
+
+em.getTransaction().commit();
+em.close();
+emf.close();
