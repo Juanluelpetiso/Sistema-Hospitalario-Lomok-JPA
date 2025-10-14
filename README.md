@@ -85,11 +85,11 @@ El archivo `persistence.xml` define la unidad de persistencia:
 ```
 
 
+---
 
 
 
-
-Ejemplo de uso básico
+## Ejemplo de uso básico
 Creación y persistencia de entidades
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("hospital-persistence-unit");
 EntityManager em = emf.createEntityManager();
